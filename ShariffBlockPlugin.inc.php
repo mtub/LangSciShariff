@@ -90,17 +90,6 @@ class ShariffBlockPlugin extends BlockPlugin {
 	}
 
 	//
-	// Implement template methods from LazyLoadPlugin
-	//
-	/**
-	 * @copydoc LazyLoadPlugin::getEnabled()
-	 */
-	function getEnabled() {
-		$plugin =& $this->_getPlugin();
-		return $plugin->getEnabled();
-	}
-
-	//
 	// Implement template methods from BlockPlugin
 	//
 	/**
@@ -145,7 +134,6 @@ class ShariffBlockPlugin extends BlockPlugin {
 
 		$locale = AppLocale::getLocale();
 		$iso1Lang = AppLocale::getIso1FromLocale($locale);
-		$requestedUrl = $request->getCompleteUrl();
 		$baseUrl = $request->getBaseUrl();
 		$jsUrl = $baseUrl .'/'. $this->getPluginPath().'/shariff.complete.js';
 
@@ -153,7 +141,6 @@ class ShariffBlockPlugin extends BlockPlugin {
 		$templateMgr->assign('selectedTheme', $selectedTheme);
 		$templateMgr->assign('backendUrl', $backendUrl);
 		$templateMgr->assign('iso1Lang', $iso1Lang);
-		$templateMgr->assign('requestedUrl', $requestedUrl);
 		$templateMgr->assign('jsUrl', $jsUrl);
 		return parent::getContents($templateMgr, $request);
 	}
